@@ -7,10 +7,10 @@ bank.o: libs/bank.cpp libs/headers/bank.h
 	g++ libs/bank.cpp -c
 
 bank_init.o: bank_init.cpp
-	g++ bank_init.cpp -c
+	g++ bank_init.cpp -c -pthread
 
 main: bank.o bank_cell.o bank_init.o
-	g++ bank_init.o bank.o bank_cell.o -o bank_init
+	g++ bank_init.o bank.o bank_cell.o -pthread -o bank_init
 	rm *.o
 
 clean: 
