@@ -1,4 +1,4 @@
-#include "bank_cell.h"
+#include "headers/bank_cell.h"
 
 Bank_cell::Bank_cell() : 
 	minAmount(0), 

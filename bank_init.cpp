@@ -3,13 +3,15 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
-#include "bank.h"
 #include <cerrno>
+#include <semaphore.h>
+#include "libs/headers/bank.h"
 
 int main(int argc, char** argv)
 {
 	unsigned long n = static_cast<long>(std::stoul(argv[1]));
 	
+	//creating shared mem
 	const char* sharedMem = "/Bank";
 
 	int sharedFd = shm_open(sharedMem, O_CREAT|O_RDWR|O_TRUNC, 0666);
@@ -27,7 +29,8 @@ int main(int argc, char** argv)
 		std::cerr << "truncate: could not truncate\n";
 		exit(EXIT_FAILURE);
 	}
-
+	
+	//filling the shared mem with bank cells
 	void* ptr = mmap(nullptr,
 		       	sizeOfSharedMem,
 		       	PROT_READ|PROT_WRITE,
@@ -47,6 +50,17 @@ int main(int argc, char** argv)
 	for(std::size_t i = 0; i < 1; ++i)
 	{
 		pBank->operator[](i) = Bank_cell();//one bilion
+	}
+
+	//creating the semaphore
+	
+	const char* semphName = "/BankSem";
+
+	sem_t* semaph = sem_open(semphName, O_CREAT | O_RDWR , 0666, 10);
+	if(semaph == SEM_FAILED)
+	{
+		std::cerr << "semaphore: failure at creation\n";
+		exit(EXIT_FAILURE);
 	}
 
 	return 0;	

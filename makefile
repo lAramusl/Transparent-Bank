@@ -1,10 +1,10 @@
 run: main
 
-bank_cell.o: libs/bank_cell.cpp headers/bank_cell.h
-	g++ bank_cell.cpp -c
+bank_cell.o: libs/bank_cell.cpp libs/headers/bank_cell.h
+	g++ libs/bank_cell.cpp -c
 
-bank.o: libs/bank.cpp headers/bank.h
-	g++ bank.cpp -c
+bank.o: libs/bank.cpp libs/headers/bank.h
+	g++ libs/bank.cpp -c
 
 bank_init.o: bank_init.cpp
 	g++ bank_init.cpp -c
