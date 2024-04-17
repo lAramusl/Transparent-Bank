@@ -10,7 +10,10 @@ class Bank
 public:
 
 	Bank(std::size_t size, Bank_cell* ptr)
-		: size(size), arr(ptr) {}
+		: size(size), arr(ptr) 
+	{
+		std::cout << "Bank: Constructed successfuly\n";
+	}
 
 	Bank_cell& operator[](std::size_t cellNum);
 

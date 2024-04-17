@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 
 	*pBank = Bank(n, (Bank_cell*)(pBank + sizeof(Bank)) );
 
-	for(std::size_t i = 0; i < 1; ++i)
+	for(std::size_t i = 0; i < n; ++i)
 	{
 		pBank->operator[](i) = Bank_cell();//one bilion
 	}

@@ -75,12 +75,14 @@ int main(int argc,char** argv)
 	void* bankptr = mmap(nullptr, shmSize, PROT_READ|PROT_WRITE, MAP_SHARED, shmFd, 0);
 
 	Bank* bnk = (Bank*)bankptr;
+	
+	std::cout << bnk->getMaxBalance(0);
 
-	while(true)
-	{
-		std::string cmd;
-		std::cin >> cmd;
-		BankAction(cmd, bnk);
-	}
+	//while(true)
+	//{
+	//	std::string cmd;
+	//	std::cin >> cmd;
+	//	BankAction(cmd, bnk);
+	//}
 				
 }
